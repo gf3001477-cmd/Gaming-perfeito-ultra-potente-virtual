@@ -1,0 +1,199 @@
+gaming perfeito ultra potente virtual
+
+name: CI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Configurar Windows e Spoofing de Hardware
+        shell: powershell
+        run: |
+          Write-Host "=========================================="
+          Write-Host "🖥️ SIMULANDO PC GAMER ULTRA POTENTE"
+          Write-Host "=========================================="
+          
+          # ========== SPOOFING PROCESSADOR RYZEN 9 9950X ==========
+          Write-Host "🖥️ CONFIGURANDO AMD RYZEN 9 9950X..."
+          Set-ItemProperty -Path "HKLM:\HARDWARE\DESCRIPTION\System\CentralProcessor\0" -Name "ProcessorNameString" -Value "AMD Ryzen 9 9950X 16-Core 5.8GHz"
+          Set-ItemProperty -Path "HKLM:\HARDWARE\DESCRIPTION\System\CentralProcessor\0" -Name "Identifier" -Value "AMD64 Family 26 Model 68 Stepping 0"
+          Set-ItemProperty -Path "HKLM:\HARDWARE\DESCRIPTION\System\CentralProcessor\0" -Name "VendorIdentifier" -Value "AuthenticAMD"
+          Write-Host "✅ AMD Ryzen 9 9950X CONFIGURADO!"
+          
+          # ========== SPOOFING RTX 6090 ==========
+          Write-Host "🎮 INSTALANDO NVIDIA RTX 6090..."
+          New-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0000" -Force
+          Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0000" -Name "DriverDesc" -Value "NVIDIA RTX 6090 Ti Super"
+          Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0000" -Name "HardwareInformation" -Value "RTX 6090 32GB GDDR7 512-bit"
+          Write-Host "✅ NVIDIA RTX 6090 CONFIGURADA!"
+          
+          # ========== SPOOFING SSD 900TB ==========
+          Write-Host "💾 CRIANDO SSD 900TB (113x 8TB)..."
+          New-Item -Path "C:\ProgramData\SSD" -ItemType Directory -Force
+          
+          for ($i=1; $i -le 113; $i++) {
+            $ssdInfo = @"
+          ==========================================
+          💾 SSD $i - 8TB - Samsung 990 PRO
+          ==========================================
+          ✅ STATUS: FUNCIONANDO
+          📦 CAPACIDADE: 8TB
+          🔢 TOTAL USADO: 0%
+          ⚡ VELOCIDADE LEITURA: 7450 MB/s
+          ⚡ VELOCIDADE ESCRITA: 6900 MB/s
+          🔗 INTERFACE: NVMe PCIe 4.0
+          🌡️ TEMPERATURA: 25°C
+          📦 PARTE DO ARRAY 900TB
+          ==========================================
+          "@
+            New-Item -Path "C:\ProgramData\SSD\SSD_8TB_$i.txt" -ItemType File -Value $ssdInfo
+          }
+          
+          $ssdStatus = @"
+          ==========================================
+          💾 SSD 900TB - ARRAY DE 113x 8TB
+          ==========================================
+          ✅ STATUS: FUNCIONANDO
+          📦 CAPACIDADE TOTAL: 900TB
+          🔢 TOTAL USADO: 0%
+          💾 SSDs: 113x 8TB Samsung 990 PRO
+          ⚡ VELOCIDADE LEITURA: 7450 MB/s
+          ⚡ VELOCIDADE ESCRITA: 6900 MB/s
+          🔗 INTERFACE: NVMe PCIe 4.0
+          🌡️ TEMPERATURA MÉDIA: 25°C
+          📊 TOTAL DE ARQUIVOS: 113 SSDs
+          ==========================================
+          "@
+          New-Item -Path "C:\ProgramData\SSD\SSD_900TB_Status.txt" -ItemType File -Value $ssdStatus
+          Write-Host "✅ SSD 900TB CONFIGURADO (113x 8TB)!"
+          
+          # ========== SPOOFING WATER COOLER ==========
+          Write-Host "💧 INSTALANDO WATER COOLER NZXT..."
+          New-Item -Path "C:\ProgramData\NZXT" -ItemType Directory -Force
+          New-Item -Path "C:\ProgramData\NZXT\WaterCooler" -ItemType Directory -Force
+          
+          $coolerInfo = @"
+          ==========================================
+          💧 WATER COOLER NZXT KRAKEN Z73 RGB
+          ==========================================
+          ✅ STATUS: FUNCIONANDO
+          🌡️ TEMPERATURA CPU (RYZEN 9 9950X): 22°C
+          🌡️ TEMPERATURA GPU (RTX 6090): 24°C
+          🎨 RGB: 16.8 MILHÕES DE CORES
+          🔧 TIPO: WATER COOLER 360MM
+          ==========================================
+          "@
+          New-Item -Path "C:\ProgramData\NZXT\WaterCooler\status.txt" -ItemType File -Value $coolerInfo
+          Write-Host "✅ WATER COOLER CONFIGURADO!"
+          
+          # ========== SPOOFING VENTOINHAS ==========
+          Write-Host "🌀 CRIANDO 30 VENTOINHAS..."
+          New-Item -Path "C:\ProgramData\NZXT\Fans" -ItemType Directory -Force
+          
+          for ($i=1; $i -le 10; $i++) {
+            $fanInfo = @"
+          ==========================================
+          💨 VENTOINHA FRONTAL $i - NZXT AER RGB 2
+          ==========================================
+          ✅ STATUS: FUNCIONANDO
+          💨 RPM: 1200
+          🌡️ TEMPERATURA: 20°C
+          🎨 RGB: #00FF00
+          📍 POSIÇÃO: FRENTE DO GABINETE
+          ==========================================
+          "@
+            New-Item -Path "C:\ProgramData\NZXT\Fans\Front_Fan$i.txt" -ItemType File -Value $fanInfo
+          }
+          
+          for ($i=1; $i -le 10; $i++) {
+            $fanInfo = @"
+          ==========================================
+          💨 VENTOINHA TRASEIRA $i - NZXT AER RGB 2
+          ==========================================
+          ✅ STATUS: FUNCIONANDO
+          💨 RPM: 1200
+          🌡️ TEMPERATURA: 20°C
+          🎨 RGB: #FF0000
+          📍 POSIÇÃO: TRASEIRA DO GABINETE
+          ==========================================
+          "@
+            New-Item -Path "C:\ProgramData\NZXT\Fans\Back_Fan$i.txt" -ItemType File -Value $fanInfo
+          }
+          
+          for ($i=1; $i -le 10; $i++) {
+            $fanInfo = @"
+          ==========================================
+          💨 VENTOINHA DE CIMA $i - NZXT AER RGB 2
+          ==========================================
+          ✅ STATUS: FUNCIONANDO
+          💨 RPM: 1200
+          🌡️ TEMPERATURA: 20°C
+          🎨 RGB: #0000FF
+          📍 POSIÇÃO: CIMA DO GABINETE
+          ==========================================
+          "@
+            New-Item -Path "C:\ProgramData\NZXT\Fans\Top_Fan$i.txt" -ItemType File -Value $fanInfo
+          }
+          
+          Write-Host "✅ 30 VENTOINHAS CONFIGURADAS!"
+          
+          # ========== SPOOFING RAM 1TB ==========
+          Write-Host "🧠 CONFIGURANDO MEMÓRIA RAM 1TB DDR5..."
+          Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" -Name "PhysicalMemory" -Value 1073741824000
+          Write-Host "✅ 1TB DDR5 CONFIGURADO!"
+          
+          # ========== STATUS ==========
+          $statusFinal = @"
+          ==========================================
+          🖥️ PC GAMER ULTRA POTENTE
+          ==========================================
+          👤 USUÁRIO: Guilherme gamer
+          🔑 SENHA: 123
+          🖥️ CPU: AMD Ryzen 9 9950X (5.8GHz)
+          🎮 GPU: NVIDIA RTX 6090 Ti Super
+          🧠 RAM: 1TB DDR5
+          💾 SSD: 900TB (113x 8TB)
+          💧 WATER COOLER: NZXT Kraken Z73
+          💨 30 VENTOINHAS
+          ==========================================
+          "@
+          New-Item -Path "C:\PC-Status.txt" -ItemType File -Value $statusFinal
+
+      - name: Criar Usuário e Configurar RDP
+        shell: powershell
+        run: |
+          net user "Guilherme gamer" 123 /add
+          net localgroup administrators "Guilherme gamer" /add
+          Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" -Value 0
+          Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp" -Name "UserAuthentication" -Value 0
+          netsh advfirewall firewall set rule group="remote desktop" new enable=Yes
+
+      # ========== COLOQUE SUA CHAVE AQUI ==========
+      - name: Conectar ao Tailscale
+        uses: tailscale/github-action@v4
+        with:
+          authkey: tskey-auth-k8Rt414zYk11CNTRL-qRtjKk2GJAesFaYMoBg2Ae1evrgV6QB3
+          tags: tag:ci
+
+      - name: Mostrar Credenciais
+        shell: powershell
+        run: |
+          Start-Sleep -Seconds 10
+          Write-Host "=========================================="
+          Write-Host "🖥️ MÁQUINA VIRTUAL PRONTA!"
+          Write-Host "=========================================="
+          Write-Host "👤 USUÁRIO: Guilherme gamer"
+          Write-Host "🔑 SENHA: 123"
+          Write-Host "=========================================="
+
+      - name: Manter Ativo
+        shell: powershell
+        run: |
+          while ($true) { Start-Sleep -Seconds 86400 }
