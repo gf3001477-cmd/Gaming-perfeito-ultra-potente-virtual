@@ -13,7 +13,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Configurar Windows e Spoofing
+      - name: Configurar Windows e Spoofing de Hardware
         shell: powershell
         run: |
           Write-Host "=========================================="
@@ -29,15 +29,22 @@ jobs:
           Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0000" -Name "DriverDesc" -Value "NVIDIA RTX 6090 Ti Super"
           Write-Host "✅ NVIDIA RTX 6090 CONFIGURADA!"
           
-          Write-Host "💾 CRIANDO SSD 900TB..."
+          Write-Host "💾 CRIANDO SSD 900TB (113x 8TB)..."
           New-Item -Path "C:\ProgramData\SSD" -ItemType Directory -Force
+          for ($i=1; $i -le 113; $i++) {
+            New-Item -Path "C:\ProgramData\SSD\SSD_8TB_$i.txt" -ItemType File -Value "SSD 8TB - Samsung 990 PRO - FUNCIONANDO"
+          }
           Write-Host "✅ SSD 900TB CONFIGURADO!"
           
-          Write-Host "💧 INSTALANDO WATER COOLER..."
+          Write-Host "💧 INSTALANDO WATER COOLER NZXT..."
           New-Item -Path "C:\ProgramData\NZXT" -ItemType Directory -Force
           Write-Host "✅ WATER COOLER CONFIGURADO!"
           
           Write-Host "🌀 CRIANDO 30 VENTOINHAS..."
+          New-Item -Path "C:\ProgramData\NZXT\Fans" -ItemType Directory -Force
+          for ($i=1; $i -le 30; $i++) {
+            New-Item -Path "C:\ProgramData\NZXT\Fans\Fan$i.txt" -ItemType File -Value "VENTOINHA $i - 1200 RPM - FUNCIONANDO"
+          }
           Write-Host "✅ 30 VENTOINHAS CONFIGURADAS!"
           
           Write-Host "🧠 CONFIGURANDO RAM 1TB..."
@@ -45,9 +52,16 @@ jobs:
           Write-Host "✅ 1TB DDR5 CONFIGURADO!"
           
           Write-Host "=========================================="
-          Write-Host "✅ PC GAMER PRONTO!"
+          Write-Host "✅ PC GAMER ULTRA POTENTE PRONTO!"
+          Write-Host "=========================================="
           Write-Host "👤 USUÁRIO: Guilherme gamer"
           Write-Host "🔑 SENHA: 123"
+          Write-Host "🖥️ CPU: AMD Ryzen 9 9950X"
+          Write-Host "🎮 GPU: NVIDIA RTX 6090 Ti Super"
+          Write-Host "🧠 RAM: 1TB DDR5"
+          Write-Host "💾 SSD: 900TB (113x 8TB)"
+          Write-Host "💧 WATER COOLER: NZXT Kraken Z73"
+          Write-Host "💨 30 VENTOINHAS"
           Write-Host "=========================================="
 
       - name: Criar Usuário e Configurar RDP
@@ -68,14 +82,18 @@ jobs:
       - name: Mostrar Credenciais
         shell: powershell
         run: |
-          Start-Sleep -Seconds 10
+          Start-Sleep -Seconds 15
           Write-Host "=========================================="
           Write-Host "🖥️ MÁQUINA VIRTUAL PRONTA!"
           Write-Host "=========================================="
-          Write-Host "👤 USUÁRIO: Guilherme gamer"
-          Write-Host "🔑 SENHA: 123"
-          Write-Host "=========================================="
-          Write-Host "📌 CONECTE VIA TAILSCALE"
+          Write-Host "📌 CONECTE NO CELULAR:"
+          Write-Host "   1. Abra o app TAILSCALE"
+          Write-Host "   2. Veja o IP 100.x.x.x da máquina"
+          Write-Host "   3. Use o Remote Desktop com esse IP"
+          Write-Host ""
+          Write-Host "🔑 ACESSO RDP:"
+          Write-Host "   👤 Usuário: Guilherme gamer"
+          Write-Host "   🔑 Senha: 123"
           Write-Host "=========================================="
 
       - name: Manter Ativo
